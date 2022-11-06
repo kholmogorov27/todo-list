@@ -1,0 +1,8 @@
+:root {
+  --main: #42a5f5;
+  --background: #1976d2;
+  --foreground: white;
+  --input-fields-gray: #F3F3F3;
+  --input-fields-dim: #B5B5B5;
+  --text-on-main: white;
+}

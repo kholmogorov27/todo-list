@@ -1,0 +1,18 @@
+.text-box {
+  width: 100%;
+  display: block;
+  border: none;
+  background-color: var(--input-fields-gray);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.text-box::placeholder {
+  color: var(--input-fields-dim);
+}
+
+.text-box:focus {
+  outline: 2px solid var(--main);
+}

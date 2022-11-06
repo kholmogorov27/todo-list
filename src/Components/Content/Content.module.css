@@ -1,0 +1,18 @@
+.content {
+  width: 100%;
+  padding: 0 30px;
+}
+
+.task-tag {
+  padding: 5px;
+  margin-left: 10px;
+  background-color: var(--main);
+  font-size: .8em;
+  border-radius: 5px;
+  color: var(--text-on-main);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}

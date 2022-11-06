@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './theme.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+//--- Data example
+const dataExapmle = {
+  Groceries: [{title: 'Purchase Milk & Corn Flakes', category: 'Groceries'}],
+  College: [{title: 'Complete Assignments', category: 'College'}],
+  Payments: [{title: 'Pay mortgage', category: 'Payments'}],
+  Uncategorized: [{title: 'Get a new helmet', category: 'Uncategorized'}, {title: 'Replace laptop’s screen', category: 'Uncategorized'}]
+}
+//---
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App storage={dataExapmle}/>
   </React.StrictMode>
 );
 

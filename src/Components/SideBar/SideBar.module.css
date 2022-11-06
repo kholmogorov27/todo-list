@@ -1,0 +1,28 @@
+.side-bar {
+  display: flex;
+  align-items: center;
+  min-width: 30%;
+  padding: 0 30px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.category-list {
+  width: 100%;
+  list-style: none;
+  font-size: larger;
+  padding: 0;
+}
+
+.category-list > li {
+  margin-bottom: 5px;
+  padding: 7px;
+  padding-left: 10px;
+  border-radius: 6px;
+}
+
+li.active {
+  background-color: var(--main);
+  color: var(--text-on-main);
+}

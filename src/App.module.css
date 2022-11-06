@@ -1,0 +1,19 @@
+body {
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Lato', serif;
+  color: #525252;
+}
+
+.main-container {
+  display: flex;
+  min-width: 50vw;
+  min-height: 80vh;
+  width: 60vw;
+  background-color: var(--foreground);
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px 0 #00000060;
+}
