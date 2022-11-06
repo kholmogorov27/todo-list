@@ -27,6 +27,12 @@ function App({ storage }) {
     Uncategorized: []
   }, storage))
   const [selectedCategory, setSelectedCategory] = useState('All')
+  
+  //--- Handlers
+    const handleChangeCategory = e => {
+      setSelectedCategory(e.target.getAttribute('name'))
+    }
+  //---
   /*
   const addTask = (taskTitle, category) => {
     category = category || 'Uncategorized'
@@ -55,9 +61,9 @@ function App({ storage }) {
 
   return (
     <div className={styles['main-container']} ref={mainContainerEl}>
-      <SideBar categories={filterObjectKeys(data, HIDDEN_CATEGORIES)} selectedCategory={selectedCategory}></SideBar>
+      <SideBar categories={filterObjectKeys(data, HIDDEN_CATEGORIES)} selectedCategory={selectedCategory} handleCategoryChange={handleChangeCategory}></SideBar>
       <VerticalSeparator height={containerHeight}></VerticalSeparator>
-      <Content selectedCategory={selectedCategory} tasks={data[selectedCategory]}></Content>
+      <Content selectedCategory={selectedCategory} tasks={data[selectedCategory]} handleCategoryChange={handleChangeCategory}></Content>
     </div>
   );
 }

@@ -17,9 +17,13 @@
 
 .category-list > li {
   margin-bottom: 5px;
-  padding: 7px;
+  padding: 8px;
   padding-left: 10px;
   border-radius: 6px;
+}
+
+.category-list > li:hover{
+  cursor: pointer;
 }
 
 li.active {

@@ -3,7 +3,7 @@ import TextBox from '../TextBox/TextBox'
 import CheckBox from '../CheckBox/CheckBox'
 import styles from './Content.module.css'
 
-function Content({ selectedCategory, tasks }) {
+function Content({ selectedCategory, tasks, handleCategoryChange }) {
   return (
     <div className={styles['content']}>
       <h1>{selectedCategory}</h1>
@@ -12,7 +12,7 @@ function Content({ selectedCategory, tasks }) {
         <ul className={styles['list']}>
           {tasks.map(task => {
             const id = uuid()
-            const label = <>{task.title}{task.category !== 'Uncategorized' && <span className={styles['task-tag']}>{task.category}</span>}</>
+            const label = <>{task.title}{task.category !== 'Uncategorized' && <span className={styles['task-tag']} name={task.category} onClick={handleCategoryChange}>{task.category}</span>}</>
             return (
               <li key={id}><CheckBox label={label}/></li>
             )
