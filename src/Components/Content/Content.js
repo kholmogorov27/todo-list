@@ -24,13 +24,30 @@ function Content({ selectedCategory, data, onCategoryChange, onNewTask, onCheckB
     <div className={styles['content']}>
       <h1>{selectedCategory}</h1>
       <form>
-        <TextBox placeholder={`Add a new task inside "${selectedCategory}" category`} onDone={taskTitle => onNewTask(taskTitle, selectedCategory)}/>
+        <TextBox 
+          placeholder={`Add a new task inside "${selectedCategory}" category`} 
+          onDone={taskTitle => onNewTask(taskTitle, selectedCategory)}/>
         <ul className={styles['list']}>
           {tasks.map(task => {
-            const label = <>{task.title}{task.category !== 'Uncategorized' && <span className={styles['task-tag']} name={task.category} onClick={onCategoryChange}>{task.category}</span>}</>
+            const label = 
+            <>
+              {task.title}
+              {task.category !== 'Uncategorized' && 
+                <span 
+                  className={styles['task-tag']} 
+                  name={task.category} 
+                  onClick={onCategoryChange}>
+                    {task.category}
+                </span>}
+            </>
             return (
               <li key={task.id}>
-                <CheckBox id={task.id} label={label} onChange={onCheckBoxChange} additional={task.category} initiallyChecked={task.checked}/>
+                <CheckBox 
+                  id={task.id} 
+                  label={label} 
+                  onChange={onCheckBoxChange} 
+                  additional={task.category} 
+                  initiallyChecked={task.checked}/>
               </li>
             )
           })}

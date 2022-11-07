@@ -13,7 +13,10 @@ function CheckBox({ label, id, onChange, additional, initiallyChecked }) {
   return (
     <label className={styles['container']}>
       {label}
-      <input type="checkbox" defaultChecked={checked} onChange={handleChange}/>
+      <input 
+        type="checkbox" 
+        defaultChecked={checked} 
+        onChange={handleChange}/>
       <span className={styles['checkmark']} />
     </label>
   )

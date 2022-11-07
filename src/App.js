@@ -30,25 +30,26 @@ function App({ storage }) {
         draft[category].find(el => el.id === id).checked = value
       })
     }
+    
+    const handleNewTask = (taskTitle, category) => {
+      category = category || 'Uncategorized'
+      if (category === 'All') {
+        category = 'Uncategorized'
+      }
+      setData(draft => {
+        draft[category].push({title: taskTitle, category: category, id: uuid(), checked: false})
+      })
+    }
+  
+    const handleNewCategory = name => {
+      setData(draft => {
+        if (!draft.hasOwnProperty(name)) {
+          draft[name] = []
+        }
+      })
+    }
   //---
 
-  const handleNewTask = (taskTitle, category) => {
-    category = category || 'Uncategorized'
-    if (category === 'All') {
-      category = 'Uncategorized'
-    }
-    setData(draft => {
-      draft[category].push({title: taskTitle, category: category, id: uuid(), checked: false})
-    })
-  }
-
-  const handleNewCategory = name => {
-    setData(draft => {
-      if (!draft.hasOwnProperty(name)) {
-        draft[name] = []
-      }
-    })
-  }
 
   //--- Container's height block
     const [containerHeight, setContainerHeight] = useState(0)
@@ -65,9 +66,20 @@ function App({ storage }) {
 
   return (
     <div className={styles['main-container']} ref={mainContainerEl}>
-      <SideBar categories={categoriesForSideBar} selectedCategory={selectedCategory} onCategoryChange={handleChangeCategory} onNewCategory={handleNewCategory}></SideBar>
+      <SideBar 
+        categories={categoriesForSideBar} 
+        selectedCategory={selectedCategory} 
+        onCategoryChange={handleChangeCategory} 
+        onNewCategory={handleNewCategory}>
+      </SideBar>
       <VerticalSeparator height={containerHeight}></VerticalSeparator>
-      <Content selectedCategory={selectedCategory} data={data} onCategoryChange={handleChangeCategory} onNewTask={handleNewTask} onCheckBoxChange={handleCheckBoxChange}></Content>
+      <Content 
+        selectedCategory={selectedCategory} 
+        data={data} 
+        onCategoryChange={handleChangeCategory} 
+        onNewTask={handleNewTask} 
+        onCheckBoxChange={handleCheckBoxChange}>
+      </Content>
     </div>
   );
 }
