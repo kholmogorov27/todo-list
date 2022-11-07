@@ -1,18 +1,48 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
 .text-box {
   width: 100%;
   display: block;
   border: none;
   background-color: var(--input-fields-gray);
   padding: 12px;
-  border-radius: 6px;
   font-family: inherit;
-  box-sizing: border-box;
+  box-sizing: border-box; 
+  font-size: large;
 }
 
 .text-box::placeholder {
   color: var(--input-fields-dim);
+  font-size: medium;
 }
 
 .text-box:focus {
   outline: 2px solid var(--main);
+}
+
+.text-box.active {
+  width: calc(100% - 40px);
+}
+
+.button-wrapper {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.button-wrapper.active {
+  visibility: visible;
 }
