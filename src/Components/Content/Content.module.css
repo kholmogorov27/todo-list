@@ -16,3 +16,11 @@
   list-style: none;
   padding: 0;
 }
+
+.list > li {
+  white-space: nowrap;
+}
+
+.list > li:hover :global .hover-active {
+  visibility: visible !important;
+}

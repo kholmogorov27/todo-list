@@ -1,0 +1,6 @@
+.remove-button {
+  visibility: hidden;
+  display: inline;
+  margin-left: 5px;
+  cursor: pointer;
+}

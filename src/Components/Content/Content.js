@@ -1,8 +1,9 @@
 import TextBox from '../TextBox/TextBox'
 import CheckBox from '../CheckBox/CheckBox'
+import RemoveButton from '../RemoveButton/RemoveButton'
 import styles from './Content.module.css'
 
-function Content({ selectedCategory, data, onCategoryChange, onNewTask, onCheckBoxChange }) {
+function Content({ selectedCategory, data, onCategoryChange, onNewTask, onCheckBoxChange, onTaskDelete }) {
   let tasks = []
   
   // Getting all the tasks
@@ -48,6 +49,8 @@ function Content({ selectedCategory, data, onCategoryChange, onNewTask, onCheckB
                   onChange={onCheckBoxChange} 
                   additional={task.category} 
                   initiallyChecked={task.checked}/>
+                {' '}
+                <RemoveButton onClick={e => onTaskDelete(task.category, task.id)}/>
               </li>
             )
           })}

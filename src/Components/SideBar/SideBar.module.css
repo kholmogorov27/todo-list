@@ -16,14 +16,23 @@
 }
 
 .category-list > li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 5px;
   padding: 8px;
   padding-left: 10px;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .category-list > li:hover{
   cursor: pointer;
+}
+
+.category-list > li:hover :global .hover-active {
+  visibility: visible !important;
 }
 
 li.active {
