@@ -80,25 +80,28 @@ function App({ storage }) {
   categoriesForSideBar.unshift('All')
 
   return (
-    <div className={styles['main-container']} ref={mainContainerEl}>
-      <SideBar 
-        categories={categoriesForSideBar} 
-        selectedCategory={selectedCategory} 
-        onCategoryChange={handleChangeCategory} 
-        onNewCategory={handleNewCategory}
-        onCategoryDelete={handleRemoveCategory}>
-      </SideBar>
-      <VerticalSeparator height={containerHeight}></VerticalSeparator>
-      <Content 
-        selectedCategory={selectedCategory} 
-        data={data} 
-        onCategoryChange={handleChangeCategory} 
-        onNewTask={handleNewTask} 
-        onCheckBoxChange={handleCheckBoxChange}
-        onTaskDelete={handleRemoveTask}>
-      </Content>
-    </div>
-  );
+    <>
+      <div className={styles['main-container']} ref={mainContainerEl}>
+        <h1 className={styles['logo']}>ToDo List</h1>
+        <SideBar 
+          categories={categoriesForSideBar} 
+          selectedCategory={selectedCategory} 
+          onCategoryChange={handleChangeCategory} 
+          onNewCategory={handleNewCategory}
+          onCategoryDelete={handleRemoveCategory}>
+        </SideBar>
+        <VerticalSeparator height={containerHeight}></VerticalSeparator>
+        <Content 
+          selectedCategory={selectedCategory} 
+          data={data} 
+          onCategoryChange={handleChangeCategory} 
+          onNewTask={handleNewTask} 
+          onCheckBoxChange={handleCheckBoxChange}
+          onTaskDelete={handleRemoveTask}>
+        </Content>
+      </div>
+    </>
+  )
 }
 
 export default App
