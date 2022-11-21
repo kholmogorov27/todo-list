@@ -75,7 +75,10 @@ function Content() {
                 <span 
                   className={styles['task-tag']} 
                   name={task.category} 
-                  onClick={handleChangeCategory}>
+                  onClick={e => {
+                    e.preventDefault()
+                    handleChangeCategory(e)
+                  }}>
                     {task.category}
                 </span>}
             </>
