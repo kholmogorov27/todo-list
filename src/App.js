@@ -1,68 +1,65 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid' //to remove
 import { useImmer } from 'use-immer'
+import ContextProvider from './MainContext'
 import SideBar from './Components/SideBar/SideBar'
 import Content from './Components/Content/Content'
 import VerticalSeparator from './Components/VerticalSeparator/VerticalSeparator'
 import styles from './App.module.css'
 
-// Categories to hide
-const HIDDEN_CATEGORIES = ['Uncategorized']
+import dataFromStorage from './sampleData'
 
-// Filtering keys of an object
-const filterObjectKeys = (object, filter) => Object.keys(object).filter(category => filter.indexOf(category) === -1)
-
-function App({ storage }) {
-
+function App() {
+  
   const [data, setData] = useImmer(Object.assign({ // Merging initial data with the data from a storage
     Uncategorized: [] // "Uncategorized" is a hidden category that doesn't show in the SideBar
-  }, storage))
+  }, dataFromStorage))
   const [selectedCategory, setSelectedCategory] = useState('All')
-
+  
   //--- Handlers
-    const handleChangeCategory = e => {
-      setSelectedCategory(e.target.getAttribute('name'))
-    }
+  const handleNewCategory = name => { // 'category added'
+    setData(draft => {
+      if (!draft.hasOwnProperty(name)) {
+        draft[name] = []
+      }
+    })
+  }
+  
+  const handleRemoveCategory = (category) => { // 'category removed'
+    setData(draft => {
+      if (category === selectedCategory) {
+        setSelectedCategory('All')
+      }
+      delete draft[category]
+    })
+  }
 
-    const handleCheckBoxChange = (value, id, category) => {
+  const handleChangeCategory = e => { // 'category changed'
+    setSelectedCategory(e.target.getAttribute('name'))
+  }
+
+  const handleCheckBoxChange = (value, id, category) => { // 'checkbox changed'
       setData(draft => {
         draft[category].find(el => el.id === id).checked = value
       })
     }
     
-    const handleNewTask = (taskTitle, category) => {
-      category = category || 'Uncategorized'
-      if (category === 'All') {
-        category = 'Uncategorized'
-      }
-
-      setData(draft => {
-        draft[category].push({title: taskTitle, category: category, id: uuid(), checked: false})
-      })
+  const handleNewTask = (taskTitle, category) => { // 'task added'
+    category = category || 'Uncategorized'
+    if (category === 'All') {
+      category = 'Uncategorized'
     }
+
+    setData(draft => {
+      draft[category].push({title: taskTitle, category: category, id: uuid(), checked: false})
+    })
+  }
   
-    const handleNewCategory = name => {
-      setData(draft => {
-        if (!draft.hasOwnProperty(name)) {
-          draft[name] = []
-        }
-      })
-    }
-
-    const handleRemoveTask = (category, id) => {
-      setData(draft => {
-        draft[category].splice(draft[category].findIndex(el => el.id === id), 1)
-      })
-    }
-
-    const handleRemoveCategory = (category) => {
-      setData(draft => {
-        if (category === selectedCategory) {
-          setSelectedCategory('All')
-        }
-        delete draft[category]
-      })
-    }
+  const handleRemoveTask = (category, id) => { // 'task removed'
+    setData(draft => {
+      draft[category].splice(draft[category].findIndex(el => el.id === id), 1)
+    })
+  }
   //---
 
 
@@ -76,20 +73,11 @@ function App({ storage }) {
     }, [])
   //---
 
-  const categoriesForSideBar = filterObjectKeys(data, HIDDEN_CATEGORIES)
-  categoriesForSideBar.unshift('All')
-
   return (
-    <>
+    <ContextProvider>
       <div className={styles['main-container']} ref={mainContainerEl}>
         <h1 className={styles['logo']}>ToDo List</h1>
-        <SideBar 
-          categories={categoriesForSideBar} 
-          selectedCategory={selectedCategory} 
-          onCategoryChange={handleChangeCategory} 
-          onNewCategory={handleNewCategory}
-          onCategoryDelete={handleRemoveCategory}>
-        </SideBar>
+        <SideBar/>
         <VerticalSeparator height={containerHeight}></VerticalSeparator>
         <Content 
           selectedCategory={selectedCategory} 
@@ -100,7 +88,7 @@ function App({ storage }) {
           onTaskDelete={handleRemoveTask}>
         </Content>
       </div>
-    </>
+    </ContextProvider>
   )
 }
 
