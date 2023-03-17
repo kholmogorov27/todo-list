@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './TextBox.module.css'
 
-function TextBox({ placeholder, onDone }) {
+function TextBox({ placeholder, className, onDone }) {
   const [value, setValue] = useState('')
 
   const handleInput = e => {
@@ -15,7 +15,7 @@ function TextBox({ placeholder, onDone }) {
   }
 
   return (
-    <div className={styles['wrapper']}>
+    <div className={styles['wrapper'] + ' ' + className}>
       <input 
         className={value ? styles['text-box'] + ' ' + styles['active'] : styles['text-box']} 
         placeholder={placeholder} 

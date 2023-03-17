@@ -70,6 +70,7 @@ function SideBar() {
         })}
       </ul>
       <TextBox 
+        className='add-new'
         placeholder="Add a new category" 
         onDone={handleAddCategory}/>
     </div>
